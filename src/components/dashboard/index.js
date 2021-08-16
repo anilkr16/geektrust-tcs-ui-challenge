@@ -17,7 +17,7 @@ const Index = () => {
       <div>
          <h1 id='title'>Admin Dashboard</h1>
          {data && Array.isArray(data) && data.length ?
-            <DataTable data={data} emptyMessage={'No Records Found.'}/> : ''
+            <DataTable data={data} emptyMessage={'No Records Found.'} pagination={true} /> : ''
          }
       </div>
    )

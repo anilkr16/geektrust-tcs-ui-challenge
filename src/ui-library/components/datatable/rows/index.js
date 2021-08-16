@@ -36,7 +36,7 @@ const RenderRow = props => {
         }
     }
     const updateRow = (rowData, field, newValue) => {
-        const tableData = props.data;
+        const tableData = props.selectPageData;
         let index = tableData.findIndex(elem => elem.id === rowData.id);
         if (index >= 0) {
             setState(prevState => ({ ...prevState, [field]: newValue}));
