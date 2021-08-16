@@ -9,7 +9,7 @@ const DataTable = props => {
     const [selectAll, setSelectAll] = useState(false);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-    const [searchKeyword, setSearchKeyword] = useState(null);
+    const [searchKeyword, setSearchKeyword] = useState('');
     useEffect(() => {
         udpateTotalpagination(data);
         onPageclick(page);
@@ -161,7 +161,7 @@ const DataTable = props => {
                 setEmptyMessage(props.emptyMessage);
             }
         } else {
-            setData(props.data);
+            setData([...props.data]);
             setPage(1);
             onPageclick(1);
             udpateTotalpagination(props.data);
