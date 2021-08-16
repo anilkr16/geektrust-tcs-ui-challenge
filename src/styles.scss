@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+$assets-path: '../assets/images';
+body {
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  color: #4d4d4d;
+  background: lightgray;
+}
+#title {
+  text-align: center;
+}
+#datatable {
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+}
+#datatable th {
+  text-align: center;
+}
+#datatable td,
+#datatable th {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+#datatable tr:hover {
+  background-color: #ddd;
+}
+.highlight-row {
+  background-color: #ddd;
+}
+
+#datatable th {
+  padding: 10px;
+  text-align: center;
+  background-color: orange;
+  color: white;
+}
+
+.opration {
+  text-align: center;
+}
+#datatable td .delete-icon {
+    background-image: url('#{$assets-path}/delete-icon.svg');
+}
+td .delete-icon {
+    background-image: url('#{$assets-path}/delete-icon.svg');
+}
+#datatable img:hover {
+  cursor: pointer;
+}
+.pagination, .pagination a {
+  background: #f7f7f7;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #7e7e7e;
+  border: 1px solid #c6c6c6;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.current a {
+  background: orange;
+  text-decoration: none;
+  color: #7e7e7e;
+  border: 1px solid#c6c6c6;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.pagenumbers a.current{
+  background: orange;
+  text-decoration: none;
+  color: #7e7e7e;
+  border: 1px solid#c6c6c6;
+  font-weight: bold;
+  border-radius: 3px;
+}
+.action-pagination {
+  display: flex;
+  .button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  .button:hover:enabled,
+  .button:hover {
+    background-color: #f44336;
+    cursor: pointer;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  button:disabled,
+  .button:hover,
+  button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+  }
+}
+.search {
+  input[type=text] {
+    font-weight: 500;
+    padding: 10px;
+    width: 100px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  /* When the input field gets focus, change its width to 100% */
+  input[type=text]:focus {
+    width: 100%;
+  }
+}
+
