@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import deleteIcon from '../../../../../assets/images/delete-icon.svg';
-import editIcon from '../../../../../assets/images/edit-icon.svg';
-import selectAllCheck from '../../../../../assets/images/select-all-check.svg';
-import selectAllUnCheck from '../../../../../assets/images/select-all-uncheck.svg';
+import deleteIcon from 'Assets/delete-icon.svg';
+import editIcon from 'Assets/edit-icon.svg';
+import selectAllCheck from 'Assets/select-all-check.svg';
+import selectAllUnCheck from 'Assets/select-all-uncheck.svg';
 
 const RenderRow = props => {
     const [state, setState] = useState({});
