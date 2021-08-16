@@ -9,6 +9,12 @@ module.exports = {
     plugins: [
       new HtmlWebpackPlugin({ template: './src/index.html' }),
     ],
+    resolve: {
+      alias: {
+        components: path.resolve(__dirname, 'src/components/utilities/'),
+        components: path.resolve(__dirname, 'src/components/ui-library/'),
+      },
+    },
     module: {
       rules: [
         {
