@@ -139,6 +139,7 @@ const DataTable = props => {
         }
     }
     const search = inputValue => {
+        debugger
         setSearchKeyword(inputValue);
         if (inputValue) {
             const updateData = data.filter(obj => Object.values(obj).some(val => val.includes(inputValue)));
@@ -165,6 +166,7 @@ const DataTable = props => {
                 setEmptyMessage(props.emptyMessage);
             }
         } else {
+            setPage(1);
             setData(props.data);
             onPageclick(1);
             udpateTotalpagination(props.data);
