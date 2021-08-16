@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {TableHeader, RenderRow, Pagination} from '../components/DataTable';
+import {TableHeader, RenderRow, Pagination} from '../components/datatable';
 const ROWS_PER_PAGE = 10;
 const DataTable = props => {
     const [data, setData] = useState(props.data);
@@ -158,16 +158,11 @@ const DataTable = props => {
                 }
             }
             if(!updateData.length) {
-                if (page > 0) {
-                    setPage(page - 1);
-                    onPageclick(page - 1);
-                    setSelectAll(false);
-                }
                 setEmptyMessage(props.emptyMessage);
             }
         } else {
-            setPage(1);
             setData(props.data);
+            setPage(1);
             onPageclick(1);
             udpateTotalpagination(props.data);
             setSelectAll(false);
