@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import DataTable from '../../ui-library/datatable/index'
+import DataTable from 'components/datatable'
 const Index = () => {
    const [data, setData] = useState([]);
    const API_HOST = 'https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem';

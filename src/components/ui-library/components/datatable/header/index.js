@@ -1,6 +1,6 @@
 import React , {useState} from "react";
-import selectAllCheck from '../../../../../assets/images/select-all-check.svg';
-import selectAllUnCheck from '../../../../../assets/images/select-all-uncheck.svg';
+import selectAllCheck from 'Assets/select-all-check.svg';
+import selectAllUnCheck from 'Assets/select-all-uncheck.svg';
 const Header = props => {
     const renderTableHeader = () => {
         if(props && props.columns && Array.isArray(props.columns) && props.columns) {

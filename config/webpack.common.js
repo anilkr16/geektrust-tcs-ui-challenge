@@ -11,7 +11,8 @@ module.exports = {
     ],
     resolve: {
       alias: {
-        components: path.join(__dirname, '../src/components/')
+        components: path.resolve(__dirname, '../src/components/ui-library'),
+        Assets: path.resolve(__dirname, '../assets/images')
       },
       extensions: ['.js', '.json', '.wasm'],
     },
