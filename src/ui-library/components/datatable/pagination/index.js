@@ -3,12 +3,18 @@ import React, {useState} from 'react';
 const Pagination = props => {
     const pages = [...Array(props.totalPages).keys()].map(num => num + 1);
     return (
-        <div>
-            {pages && pages.map((page, index) => {
-                return (
-                    <button key={index} onClick={() => props.onPageClick(page)}>{page}</button>
-                )
-            })}
+        <div className='pagination'>
+            <div class='pagenumbers'>
+                {pages && pages.map((page, index) => {
+                    return (
+                        <a className={props.page === page ? 'number current': 'number'}
+                            key={index}
+                            onClick={() => props.onPageClick(page)}>
+                            {page}
+                        </a>
+                    )
+                })}    
+            </div>
         </div>
     )
 }

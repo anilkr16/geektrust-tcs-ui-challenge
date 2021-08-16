@@ -37,29 +37,52 @@ body {
 .opration {
   text-align: center;
 }
-
-.button {
-  border: none;
-  outline: none;
-  font-size: 11px;
-  font-family: "Quicksand", sans-serif;
-  color: #f44336;
-  padding: 3px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  border: 1px solid #f44336;
-  background-color: transparent;
-}
-
-.button:active {
-  border: 1px solid blue;
-}
 #datatable td .delete-icon {
     background-image: url('#{$assets-path}/delete-icon.svg');
 }
 td .delete-icon {
     background-image: url('#{$assets-path}/delete-icon.svg');
 }
-img:hover {
+#datatable img:hover {
   cursor: pointer;
+}
+.pagination, .pagination a {
+  background: #f7f7f7;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #7e7e7e;
+  border: 1px solid #c6c6c6;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+
+.pagination:hover {
+  background: #f7f7f7;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #7e7e7e;
+  border: 1px solid #c6c6c6;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.current a {
+  background: orange;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #7e7e7e;
+  border: 1px solid#c6c6c6;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.pagenumbers a.current{
+  background: orange;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #7e7e7e;
+  border: 1px solid#c6c6c6;
+  font-weight: bold;
+  border-radius: 3px;
 }

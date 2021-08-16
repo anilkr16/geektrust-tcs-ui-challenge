@@ -109,7 +109,7 @@ const DataTable = props => {
                     </tbody>
                 </table> : <h4>{props.emptyMessage}</h4>
             }
-            {props.pagination ? <Pagination totalPages={totalPages} onPageClick={onHandlePageClick}/> : ''}
+            {props.pagination ? <Pagination page={page} totalPages={totalPages} onPageClick={onHandlePageClick}/> : ''}
         </>
     )
 }
