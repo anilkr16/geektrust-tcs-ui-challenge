@@ -7,20 +7,21 @@ body {
   padding: 0;
   color: #4d4d4d;
 }
-
 #title {
   text-align: center;
 }
-
 #datatable {
   border-collapse: collapse;
   border: 3px solid #ddd;
 }
-
+#datatable th {
+  text-align: center;
+}
 #datatable td,
 #datatable th {
   border: 1px solid #ddd;
-  padding: 12px;
+  padding: 10px;
+  text-align: center;
 }
 
 #datatable tr:hover {
@@ -59,20 +60,8 @@ td .delete-icon {
   border-radius: 3px;
 }
 
-
-.pagination:hover {
-  background: #f7f7f7;
-  padding: 5px 10px;
-  text-decoration: none;
-  color: #7e7e7e;
-  border: 1px solid #c6c6c6;
-  font-weight: bold;
-  border-radius: 3px;
-}
-
 .current a {
   background: orange;
-  padding: 5px 10px;
   text-decoration: none;
   color: #7e7e7e;
   border: 1px solid#c6c6c6;
@@ -82,10 +71,44 @@ td .delete-icon {
 
 .pagenumbers a.current{
   background: orange;
-  padding: 5px 10px;
   text-decoration: none;
   color: #7e7e7e;
   border: 1px solid#c6c6c6;
   font-weight: bold;
   border-radius: 3px;
 }
+.action-pagination {
+  display: flex;
+  .button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  .button:hover:enabled,
+  .button:hover {
+    background-color: #f44336;
+    cursor: pointer;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  button:disabled,
+  .button:hover,
+  button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+  }
+}
+

@@ -97,19 +97,26 @@ const DataTable = props => {
     }
     return (
         <>
+           <div>
             {!emptyMessage.trim().length ? 
-                <table id='datatable'>
-                    <TableHeader
-                        columns={getKeys()}
-                        selectAll={selectAll}
-                        onSelectAll={onSelectAll}
-                    />
-                    <tbody>
-                        {renderTableData()}
-                    </tbody>
-                </table> : <h4>{props.emptyMessage}</h4>
-            }
-            {props.pagination ? <Pagination page={page} totalPages={totalPages} onPageClick={onHandlePageClick}/> : ''}
+                    <table id='datatable'>
+                        <TableHeader
+                            columns={getKeys()}
+                            selectAll={selectAll}
+                            onSelectAll={onSelectAll}
+                        />
+                        <tbody>
+                            {renderTableData()}
+                        </tbody>
+                    </table> : <h4>{props.emptyMessage}</h4>
+                }
+                <div className={'action-pagination'}>
+                    {props.multiDelete ? <button className='button' disabled={selectedKeys.length ? false : true}>
+                        DELETE SELECTED
+                    </button> : ''}
+                    {props.pagination ? <Pagination page={page} totalPages={totalPages} onPageClick={onHandlePageClick}/> : ''}
+                </div>
+           </div>
         </>
     )
 }
