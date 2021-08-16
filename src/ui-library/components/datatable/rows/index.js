@@ -67,22 +67,25 @@ const RenderRow = props => {
         if(props.selectedKeys && Array.isArray(props.selectedKeys) && props.selectedKeys.length &&
             props.selectedKeys.includes(id)) {
             return (
-                <td key={key}>
+                <td className={highlightRow() ? 'highlight-row' : ''} key={key}>
                     <img src={selectAllCheck} onClick={() => props.onSelect(props.id)} />
                 </td>
             );
         } return (
-            <td key={key}>
+            <td className={highlightRow() ? 'highlight-row' : ''} key={key}>
                 <img src={selectAllUnCheck} onClick={() => props.onSelect(props.id)} />
             </td>
         )
     }
+    const highlightRow = () => {
+        if(props && props.selectedKeys && props.selectedKeys.length) {
+            return props.selectedKeys.includes(props.id);
+        } return false;
+    }
     return props.keys.map((key, index) => {
-        if(key.toLowerCase() === 'id') {
-            return <td key={index}>{props.rowData[key]}</td>
-        } if (key.toLowerCase() === 'action') {
+        if (key.toLowerCase() === 'action') {
             return(
-                <td key={index}>
+                <td className={highlightRow() ? 'highlight-row' : ''} key={index}>
                     <img src={editIcon} onClick={() => handleEditRow(props)}
                         onBlur={() => disableEdit()}
                     />
@@ -92,7 +95,9 @@ const RenderRow = props => {
         } if(key.toLowerCase() === 'selectall') {
             return selectAllTemplate(props.id, index);
         }
-        return <td key={index}>{editTemplate(props.rowData, key)}</td>
+        return <td className={highlightRow() ? 'highlight-row': ''}
+                key={index}>{editTemplate(props.rowData, key)}
+            </td>
     })
 }
 

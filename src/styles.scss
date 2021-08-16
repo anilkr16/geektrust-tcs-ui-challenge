@@ -26,11 +26,14 @@ body {
 #datatable tr:hover {
   background-color: #ddd;
 }
+.highlight-row {
+  background-color: #ddd;
+}
 
 #datatable th {
   padding: 10px;
   text-align: center;
-  background-color: #4caf50;
+  background-color: orange;
   color: white;
 }
 

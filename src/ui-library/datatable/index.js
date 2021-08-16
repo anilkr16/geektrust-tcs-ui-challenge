@@ -41,7 +41,7 @@ const DataTable = props => {
     }
     const onSelectAll = flag => {
         if (flag === true) {
-            const ids = data.map(elem => elem.id);
+            const ids = selectPageData.map(elem => elem.id);
             setSelectedKeys([...ids]);
             setSelectAll(flag);
         } else {
