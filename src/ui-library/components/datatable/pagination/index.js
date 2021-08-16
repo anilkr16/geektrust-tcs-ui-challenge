@@ -4,7 +4,7 @@ const Pagination = props => {
     const pages = [...Array(props.totalPages).keys()].map(num => num + 1);
     return (
         <div className='pagination'>
-            <div class='pagenumbers'>
+            <div className='pagenumbers'>
                 {pages && pages.map((page, index) => {
                     return (
                         <a className={props.page === page ? 'number current': 'number'}
