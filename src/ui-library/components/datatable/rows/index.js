@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import deleteIcon from '../../../../../assets/images/delete-icon.svg';
 import editIcon from '../../../../../assets/images/edit-icon.svg';
+import selectAllCheck from '../../../../../assets/images/select-all-check.svg';
+import selectAllUnCheck from '../../../../../assets/images/select-all-uncheck.svg';
 
 const RenderRow = props => {
     const [state, setState] = useState({});
@@ -61,7 +63,21 @@ const RenderRow = props => {
     const disableEdit = () => {
         setInEditMode({isEditable: false, rowKey: null});
     }
-    return props.keys.map((key, index)=>{
+    const selectAllTemplate = (id, key) => {
+        if(props.selectedKeys && Array.isArray(props.selectedKeys) && props.selectedKeys.length &&
+            props.selectedKeys.includes(id)) {
+            return (
+                <td key={key}>
+                    <img src={selectAllCheck} onClick={() => props.onSelect(props.id)} />
+                </td>
+            );
+        } return (
+            <td key={key}>
+                <img src={selectAllUnCheck} onClick={() => props.onSelect(props.id)} />
+            </td>
+        )
+    }
+    return props.keys.map((key, index) => {
         if(key.toLowerCase() === 'id') {
             return <td key={index}>{props.rowData[key]}</td>
         } if (key.toLowerCase() === 'action') {
@@ -73,6 +89,8 @@ const RenderRow = props => {
                     <img src={deleteIcon} onClick={() => props.deleteRow(props.id)}></img>
                 </td>
             )
+        } if(key.toLowerCase() === 'selectall') {
+            return selectAllTemplate(props.id, index);
         }
         return <td key={index}>{editTemplate(props.rowData, key)}</td>
     })
