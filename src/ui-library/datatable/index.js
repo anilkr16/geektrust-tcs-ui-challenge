@@ -82,7 +82,7 @@ const DataTable = props => {
                         id={rowData.id}
                         rowData={rowData}
                         keys={keys}
-                        setData={setData}
+                        setSelectPageData={setSelectPageData}
                         deleteRow={deleteRow}
                         onSelect={onSelect}
                         selectedKeys={selectedKeys}

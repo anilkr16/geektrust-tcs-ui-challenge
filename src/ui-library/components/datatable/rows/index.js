@@ -41,7 +41,7 @@ const RenderRow = props => {
         if (index >= 0) {
             setState(prevState => ({ ...prevState, [field]: newValue}));
             tableData[index][field] = newValue;
-            props.setData(tableData); 
+            props.setSelectPageData(tableData); 
         } else {
             disableEdit()
         }
