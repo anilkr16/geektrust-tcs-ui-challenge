@@ -83,6 +83,11 @@ const RenderRow = props => {
         } return false;
     }
     return props.keys.map((key, index) => {
+        if (key.toLowerCase() === 'id') {
+            return (
+                <td className={highlightRow() ? 'highlight-row': ''} key={index}>{props.rowData[key]}</td>
+            )
+        }
         if (key.toLowerCase() === 'action') {
             return(
                 <td className={highlightRow() ? 'highlight-row' : ''} key={index}>
