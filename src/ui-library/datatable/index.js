@@ -9,6 +9,7 @@ const DataTable = props => {
     const [selectAll, setSelectAll] = useState(false);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    const [searchKeyword, setSearchKeyword] = useState(null);
     useEffect(() => {
         udpateTotalpagination(data);
         onPageclick(page);
@@ -137,8 +138,48 @@ const DataTable = props => {
             }
         }
     }
+    const search = inputValue => {
+        setSearchKeyword(inputValue);
+        if (inputValue) {
+            const updateData = data.filter(obj => Object.values(obj).some(val => val.includes(inputValue)));
+            setData(updateData);
+            if (updateData && Array.isArray(updateData) && !updateData.length) {
+                if (page === 1) {
+                    onPageclick(1);
+                    udpateTotalpagination(updateData);
+                    setSelectAll(false);
+                }
+                if (page > 1) {
+                    setPage(page - 1);
+                    onPageclick(page - 1);
+                    udpateTotalpagination(updateData);
+                    setSelectAll(false);
+                }
+            }
+            if(!updateData.length) {
+                if (page > 0) {
+                    setPage(page - 1);
+                    onPageclick(page - 1);
+                    setSelectAll(false);
+                }
+                setEmptyMessage(props.emptyMessage);
+            }
+        } else {
+            setData(props.data);
+            onPageclick(1);
+            udpateTotalpagination(props.data);
+            setSelectAll(false);
+        }
+    }
     return (
         <>
+            <div className='search'>
+                <input type='text'  name='searchKeyword'
+                    placeholder={'Search anything...'}
+                    value={searchKeyword}
+                    onChange={event => search(event.target.value)}    
+                />
+            </div>
             {!emptyMessage.trim().length ? 
                     <table id='datatable'>
                         <TableHeader
