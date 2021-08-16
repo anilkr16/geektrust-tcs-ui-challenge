@@ -10,9 +10,9 @@ const DataTable = props => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     useEffect(() => {
-        udpateTotalpagination(props.data)
-        onPageclick(1)
-    }, [])
+        udpateTotalpagination(data);
+        onPageclick(page);
+    }, [data])
     const getKeys = () => {
         const keys = Object.keys(props.data[0]);
         keys.unshift('selectall')
@@ -22,10 +22,15 @@ const DataTable = props => {
     const deleteRow = idToRemove => {
         let updateData = data.filter(elem => elem.id !== idToRemove);
         let updatedSelectedPageData = selectPageData.filter(elem => elem.id !== idToRemove);
-        setData(updateData);
+        setData([...updateData]);
         setSelectPageData(updatedSelectedPageData);
         if (updatedSelectedPageData && Array.isArray(updatedSelectedPageData) && !updatedSelectedPageData.length) {
-            if (page > 0) {
+            if (page === 1) {
+                onPageclick(page);
+                setSelectAll(false);
+                udpateTotalpagination(updateData); 
+            }
+            if (page > 1) {
                 setPage(page - 1);
                 onPageclick(page - 1);
                 udpateTotalpagination(updateData);
@@ -35,6 +40,7 @@ const DataTable = props => {
             if (page > 0) {
                 setPage(page - 1);
                 onPageclick(page - 1);
+                setSelectAll(false);
             }
             setEmptyMessage(props.emptyMessage);
         }
@@ -67,7 +73,7 @@ const DataTable = props => {
         }
     }
     const onPageclick = num => {
-        const value = data;
+        const value = [...data];
         const startIndex = (num - 1) * ROWS_PER_PAGE;
         const selectPageData = value.slice(startIndex, startIndex + ROWS_PER_PAGE);
         setSelectPageData(selectPageData);
@@ -95,9 +101,44 @@ const DataTable = props => {
         setPage(num);
         onPageclick(num);
     }
+    const deleteSelectedItems = (array, selectedIds) => {
+        return array.filter(function(obj) {
+            return !this.has(obj.id);
+        }, new Set(selectedIds.map(id => id)));
+    }
+    const deleteSelected = () => {
+        if (selectPageData && selectPageData.length && selectedKeys && selectedKeys.length) {
+            // deleting from the page rows data.
+            const updatedSelectedPageData = deleteSelectedItems(selectPageData, selectedKeys);
+            // Deleting from the whole grid data.
+            const updateData = deleteSelectedItems(data, selectedKeys);
+            setSelectPageData(updatedSelectedPageData);
+            setData(updateData);
+            if (updatedSelectedPageData && Array.isArray(updatedSelectedPageData) && !updatedSelectedPageData.length) {
+                if (page === 1) {
+                    onPageclick(1);
+                    udpateTotalpagination(updateData);
+                    setSelectAll(false);
+                }
+                if (page > 1) {
+                    setPage(page - 1);
+                    onPageclick(page - 1);
+                    udpateTotalpagination(updateData);
+                    setSelectAll(false);
+                }
+            }
+            if(!updateData.length) {
+                if (page > 0) {
+                    setPage(page - 1);
+                    onPageclick(page - 1);
+                    setSelectAll(false);
+                }
+                setEmptyMessage(props.emptyMessage);
+            }
+        }
+    }
     return (
         <>
-           <div>
             {!emptyMessage.trim().length ? 
                     <table id='datatable'>
                         <TableHeader
@@ -111,12 +152,10 @@ const DataTable = props => {
                     </table> : <h4>{props.emptyMessage}</h4>
                 }
                 <div className={'action-pagination'}>
-                    {props.multiDelete ? <button className='button' disabled={selectedKeys.length ? false : true}>
-                        DELETE SELECTED
-                    </button> : ''}
-                    {props.pagination ? <Pagination page={page} totalPages={totalPages} onPageClick={onHandlePageClick}/> : ''}
+                    {props.multiDelete && selectPageData.length ? <button className='button' disabled={selectedKeys.length ? false : true}
+                        onClick={() => deleteSelected()}>DELETE SELECTED</button> : null}
+                    {props.pagination ? <Pagination page={page} totalPages={totalPages} onPageClick={onHandlePageClick}/> : null}
                 </div>
-           </div>
         </>
     )
 }
