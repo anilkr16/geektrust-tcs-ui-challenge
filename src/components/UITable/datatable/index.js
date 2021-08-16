@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {TableHeader, RenderRow, Pagination} from '../components/datatable';
+import {TableHeader, RenderRow, Pagination} from '../components/datatable/index.js';
 const ROWS_PER_PAGE = 10;
 const DataTable = props => {
     const [data, setData] = useState(props.data);
