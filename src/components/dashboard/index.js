@@ -3,15 +3,15 @@ import DataTable from '../../ui-library/datatable/index'
 const Index = () => {
    const [data, setData] = useState([]);
    const API_HOST = 'https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem';
-   const INVENTORY_API_URL = `${API_HOST}/members.json`;
+   const MEMBER_API_URL = `${API_HOST}/members.json`;
 
-   const fetchInventory = () => {
-       fetch(`${INVENTORY_API_URL}`)
+   const fetchMembers = () => {
+       fetch(`${MEMBER_API_URL}`)
            .then(res => res.json())
            .then(json => setData(json));
    }
    useEffect(() => {
-       fetchInventory();
+      fetchMembers();
    }, []);
    return (
       <div>
